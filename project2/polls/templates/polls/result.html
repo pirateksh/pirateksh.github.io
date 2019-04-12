@@ -1,0 +1,20 @@
+{% comment %}
+CONTEXT Vars:
+    this_ques- Current question
+{% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Voting result for Question No. {{ this_ques.pk }}:</h1>
+    <ol>
+    {% for choice in this_ques.choice_set.all %}
+        <li>{{ choice.choice_text }} : {{ choice.no_of_votes }}</li>
+    {% endfor %}
+    </ol>
+    <a href="{% url "no_link" %}"><input type="button" value="OK"></a>
+
+</body>
+</html>

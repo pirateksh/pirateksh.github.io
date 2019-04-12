@@ -1,0 +1,43 @@
+{% comment %}
+    Context vars:-
+    question_id
+    ques :- All Ques
+{% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <h1>{{ ques.ques_text }}</h1>
+    <h2>---{{ ques.pub_date }}</h2>
+    <form action="{% url "ques_vote" ques.pk %}" method="post">
+    {% csrf_token %}
+        {% for choice in ques.choice_set.all %}
+    <p>
+      <label>
+        <input name="group1" id="choice {{ choice.pk }}" type="radio" checked />
+        <span>{{ choice.choice_text }}</span>
+      </label>
+    </p>
+         {% endfor %}
+  </form>
+
+{% comment %}
+            <input type="radio" id="choice {{ choice.pk }}" name="choice" value="{{ choice.pk }}">  <!-- Id is primary key of choice model-->
+            <label for="choice {{ choice.pk }}"></label>
+{% endcomment %}
+
+
+
+    <input type="submit" value="Vote" name="submit_btn" >
+
+    </form>
+</body>
+</html>
+
+<!--
+    Passed ques_id in
+__!>

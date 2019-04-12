@@ -1,0 +1,56 @@
+{% comment %}
+
+Context Vars:-
+    ques_list: List of al questions
+
+{% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title><!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+<h1>List of All the Questions</h1>
+    <div class="row">
+{% for question in ques_list %}
+    <div class="col s12 m6">
+
+      <div class="card blue-grey darken-1">
+
+        <div class="card-content white-text">
+          <span class="card-title">{{ question.ques_no }}</span>
+          <p>
+            <a href="{% url "ques_detail" question.ques_no %}">{{ question.ques_text }}-- {{ question.pub_date|date:"d, M Y" }}</a>
+        </p>
+        </div>
+
+        <div class="card-action">
+
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+
+      </div>
+
+    </div>
+{% endfor %}
+  </div>
+
+ <div class="preloader-wrapper active ">
+    <div class="spinner-layer spinner-red-only center-align">
+      <div class="circle-clipper left center-align">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
