@@ -1,0 +1,96 @@
+{%load blogapp_tags%}
+{%if user.is_authenticated%}
+ <!-- Comment started -->
+
+                <ul class="collapsible popout">
+                    <li >
+                        <div class="collapsible-header collapsible-header-comment" id="#">
+                          <i class="material-icons">mode_comment</i>Comments</p></div>
+                        <div class="collapsible-body teal lighten-5">
+                            
+                              <!-- comments is a queryset comments.count shows no. of objects -->
+                            {%useful_comments post.id as comments%}
+                            <!-- above tag only return if no. of comments on  -->
+                            {% if comments %}
+                              {% for everycomment in comments%}
+                                <div class="comments">
+                                 <div class="comment">
+                                    <strong>{{everycomment.comment}}</strong>
+                                  </div>
+                                 <div class="comment-foot">
+                                  <span>-by</span>
+                                  <a class="chip chip-imp"  href="{% url 'author-posts-newhome' post.author %}">
+                                     <img src="{{ everycomment.user.profile.image.url }}">
+                                    {{everycomment.user}}
+                                  </a>
+                                  <form id= "myform_id" method="POST">
+                                    {%csrf_token%}
+                                  <a href="javascript:$('#myform_id').submit()" class="Reply">| Reply</a>
+                                </form>
+                                </div>
+                                 <br/> 
+                              </div>                        
+                              {%endfor%}
+                            {%else%}
+                              <div><span><strong>No comments yet</strong></span></div>
+                            {%endif%}                            
+                            
+                            <div class="divider"></div>
+                            <div>
+                                <div class="row">
+                                    <form method="POST" 
+                                          action="{% url 'post-comment' post.id %}"
+                                          class="col s12">
+                                           {%csrf_token%} 
+                                       <input type="hidden" name="next" 
+                                       value="{{ request.get_full_path }}"> 
+                                      <div class="row">
+                                        <div class="input-field col s12">
+                                          <i class="material-icons prefix">mode_edit</i>
+                                          <textarea  id="icon_prefix2" placeholder="Comment..."
+                                          class="materialize-textarea" name="comment" required></textarea>
+                                          <button class="btn" 
+                                          type="submit" name="submit">Comment
+                                            <i class="material-icons right">send</i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                </div>
+                            </div> 
+                        </div>
+                    </li>
+                </ul>
+        {%else%}
+        <!-- Comment started -->
+                <ul class="collapsible popout">
+                    <li>
+                        <div class="collapsible-header collapsible-header-comment" id="#">
+                          <i class="material-icons">mode_comment</i>Comments</p></div>
+                        <div class="collapsible-body teal lighten-5">
+                            
+                              <!-- comments is a queryset comments.count shows no. of objects -->
+                            {%useful_comments post.id as comments%}
+                            <!-- above tag only return if no. of comments on  -->
+                            {% if comments %}
+                             {% for everycomment in comments%}
+                               <div class="comments">
+                                 <div class="comment">
+                                    <strong>{{everycomment.comment}}</strong>
+                                  </div>
+                                 <div class="comment-foot">
+                                  <span>-by</span>
+                                  <a class="chip chip-imp"  href="{% url 'author-posts-newhome' post.author %}">
+                                     <img src="{{ everycomment.user.profile.image.url }}">
+                                    {{everycomment.user}}
+                                  </a>
+                                </div>
+                                 <br/>  
+                              </div>                       
+                              {%endfor%}
+                            {%else%}
+                              <div><span><strong>No comments yet</strong></span></div>
+                            {%endif%}                               
+                    </li>
+                </ul>
+        {%endif%}

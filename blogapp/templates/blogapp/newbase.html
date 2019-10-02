@@ -1,0 +1,261 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% if title %}
+    <title>{{title}}</title>
+    {%else%}
+     <title>CC MNNIT</title>
+     {%endif%}
+    <!-- CSS  -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{% static 'blogapp/css/style.css' %}" rel="stylesheet" />
+    <link href="{%static 'blogapp/css/materialize.css' %}" rel="stylesheet" />
+    <link href="{%static 'blogapp/css/materialize-social.css' %}" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'blogapp/img/1200px-Code.org_logo.svg.png' %}" />
+
+
+    
+    <!-- <script type="text/javascript" src="{%static 'blogapp/js/ajax.js' %}"></script> -->
+
+    <style>
+        .bg_img2 {
+            /* Add the blur effect */
+            filter: blur(8px);
+            -webkit-filter: blur(2px);
+        }
+
+        .bg_img3 {
+            filter: blur(8px);
+            -webkit-filter: blur(3px);
+        }
+
+    
+    </style>
+
+</head>
+
+<!-- <body style="background: url('../../static/blogapp/img/header.jpg') fixed no-repeat center; background-size: cover;"> -->
+<body>
+ <div id="index-banner" class="parallax-container" style="height:100px;">
+            <div class="container" style="margin-left:5px;display: inline;">
+                <img src="{%static 'blogapp/img/1200px-Code.org_logo.svg.png' %}" class=" hide-on-small-and-down" style="height:100px; width:100px;margink:10px" />
+            </div>
+            <div>
+                <h1 class="header center white-text text-lighten-2 container" style=
+                "font-family:sans-serif; text-align:center; ">CC Club MNNIT</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light" style="font-weight:500; text-align: center;">A club for enthusiast coders at MNNIT Allahabad</h5>
+                </div>
+            </div>
+
+        <div class="parallax"><img src="{% static 'blogapp/img/escr.jpg' %}" style="height:800px; width:1000px;" alt="Unsplashed background img 1" height="800px"></div>
+        </div>
+ {% include 'blogapp/nav.html' %}
+ {% include 'blogapp/side_nav.html' %}
+ {% block content%}{%endblock content%}
+ <!-- When messages are set { %if messages % } is True -->
+<!--  {%if messages %}
+ <h4>{{messages}}</h4>
+{%else%}
+    <p>Ho Ho</p>
+{% endif %}
+ -->
+
+ {% include 'blogapp/footer.html' %}
+
+
+</body>
+<!-- #   -->
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'blogapp/js/materialize.js'%}"></script>
+<script src="{% static 'blogapp/js/init.js'%}"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ 
+
+
+<!-- # -->
+
+
+ <!--  Scripts-->
+  
+<!-- Add active class to the current Link in categories (highlight it) -->
+        <script type="text/javascript">
+    $(function(){
+        $('#catags a').filter(function(){return this.href==location.href}).parent().addClass('active deep-purple lighten-4').siblings().removeClass('active deep-purple lighten-4')
+        $('#catags a').click(function(){
+            $(this).parent().addClass('active deep-purple lighten-4').siblings().removeClass('active deep-purple lighten-4')    
+        })
+    })
+
+        // var header = document.getElementById("catags");
+        // var anchors = header.getElementsByTagName("a");
+        // for (var i = 0; i < anchors.length; i++) {
+        //   anchors[i].addEventListener("click", function() {
+        //   var current = document.getElementsByClassName("active");
+        //   current[0].removeClass("active");
+        //   this.addclass("active");
+        //   });
+        // }
+        // ('li > a').click(function() {
+        // ('li').removeClass();
+        // (this).parent('li').addClass('active');
+        // });
+
+    </script>
+
+
+  <!--   <script>
+            var modal = document.getElementById('id01');
+            // When the user clicks anywhere outside of the modal, close it
+           document.onclick = function(event) {
+                // if(event.target.id != modal.id && event.target.id != "id011") {
+                M.toast({html:event.target.id,classes: 'rounded', displayLength: 3900}).call();  
+                 // modal.style.display = "none";
+                // }
+            }
+    </script> -->
+
+   <script type="text/javascript">
+        $(document).ready(function(){
+        $('.sidenav').sidenav();
+        });
+   </script>
+
+<!--    <script type="text/javascript">
+    Template.[name].rendered = function() {
+this.autorun(function() {
+    var optionsCursor = OptionsList.find().count();
+    if(optionsCursor > 0){
+         $('select').material_select();
+    }
+});
+   </script>
+ -->
+   <script type="text/javascript">
+       $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+   </script>
+
+<!-- <script type="text/javascript">
+$(function(){ 
+    M.toast({html:"Logged Out Successfully.",displayLength: 3000}).call()
+});  
+</script>
+
+ -->
+
+
+
+
+   {%for message in messages%}
+            <script type="text/javascript">
+                M.toast({html:"{{message}}",classes: 'rounded', displayLength: 3900}).call();
+            </script>
+    {%endfor%}
+
+
+<!-- # beow code works perfectly Fine but it requires rendering of this template to update form.errors in this template that are coming from the views.So, to solve that I have stored all the errors in the messages and hence got them even with redirection. -->
+  
+  <!--   {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <script type="text/javascript">
+                M.toast({html:"{{error|escape}}",classes: 'rounded', displayLength: 3000}).call();
+            </script>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <script type="text/javascript">
+                M.toast({html:"{{error|escape}}",classes: 'rounded', displayLength: 3000}).call();
+        </script>
+    {% endfor %}
+{% endif %} -->
+
+{% if user.is_authenticated is False %}
+<script>
+$(document).ready(function(){
+  var hash = window.location.hash;
+  hash = hash.split("?");
+  // M.toast({html:hash[0],classes: 'rounded', displayLength: 3900}).call();
+  if(hash.length>0 && hash[0]=="#login"){
+        var modal = document.getElementById('id01');
+        modal.style.display = 'block';
+        // Toasts are Useful To check if things are working properly out.
+            // M.toast({html:modal,classes: 'rounded', displayLength: 3900}).call();
+    }
+    else if(hash.length>0 && hash[0]=="#register"){
+        var modal = document.getElementById('id02');
+        modal.style.display = 'block';
+    }
+});
+</script>
+{%endif%}
+
+<script type="text/javascript">
+$(document).ready(function(){
+window.onbeforeunload = function() {
+    var fieldExists = document.getElementById('id_first_name_signup');
+    if(fieldExists !== null)
+        sessionStorage.setItem("id_first_name_signup", $('#id_first_name_signup').val());
+    var fieldExists = document.getElementById('id_first_name_signup');
+    if(fieldExists !== null)
+        sessionStorage.setItem("id_last_name_signup", $('#id_last_name_signup').val());
+    var fieldExists = document.getElementById('id_first_name_signup');
+    if(fieldExists !== null)
+        sessionStorage.setItem("id_email_signup", $('#id_email_signup').val());
+    var fieldExists = document.getElementById('id_first_name_signup');
+    if(fieldExists !== null)
+        sessionStorage.setItem("id_username_signup", $('#id_username_signup').val());
+    var fieldExists = document.getElementById('id_first_name_signup');
+    if(fieldExists !== null)
+        sessionStorage.setItem("inputEmail", $('#inputEmail').val());
+}
+});   
+$(document).ready(function(){
+window.onload = function() {
+    var name = sessionStorage.getItem("id_first_name_signup");
+    if (name !== null) $('#id_first_name_signup').val(name);
+    var name = sessionStorage.getItem("id_last_name_signup");
+    if (name !== null) $('#id_last_name_signup').val(name);
+    var name = sessionStorage.getItem("id_email_signup");
+    if (name !== null) $('#id_email_signup').val(name);
+    var name = sessionStorage.getItem("id_username_signup");
+    if (name !== null) $('#id_username_signup').val(name);
+    var name = sessionStorage.getItem("inputEmail");
+    if (name !== null) $('#inputEmail').val(name);
+}
+}); 
+</script>
+<!-- TO Make the Side nav menu anchor work now after setting data-target=mobile-links -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+    })
+</script>
+
+
+<script>
+
+$(document).ready(function(){
+    $(".content-markdown img").each(function(){ 
+            // M.toast({html:"Logged Out Successfully.",displayLength: 3000}).call();
+            $(this).css("max-width","100%");
+            $(this).css("height","auto");
+    })
+})
+
+</script>
+
+
+
+
+
+</html>

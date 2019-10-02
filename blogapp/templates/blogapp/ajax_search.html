@@ -1,0 +1,8 @@
+
+{% if result_posts.count>0 %}
+{%for result_post in result_posts %}
+<li><a href="/newhome/{{result_post.label}}">{{result_post.title}}</a></li>
+{%endfor%}
+{%else%}
+<li>No Matches Found!</li>
+{%endif}

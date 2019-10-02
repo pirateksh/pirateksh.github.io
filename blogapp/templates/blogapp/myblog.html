@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'blogapp/myblog_style.css' %}">
+	<title>My Blog</title>
+	<style type="text/css">
+		<!-- Add internal Styling here -->
+	</style>
+	<script type="text/javascript">
+		function displaycontact(){
+
+			alert("\n I am Marry Poppins y'all!\n")
+
+		}
+	</script>
+</head>
+<body>
+	<!-- Header Section -->
+<div class="section" id="header">
+	<img id="img-circle" src="{% static 'blogapp/ankit.jpg' %}" alt="avatar">
+	<p>Ankit Sangwan</p>
+</div>
+	<!-- About Me section -->
+<div class="section">
+<marquee style="margin-left:250px;color:#3fb6b2;;width:70%; font-weight:bolder;">Below Infomation is correct upto best of my knowledge.</marquee>
+<marquee style="margin-left:250px;color:#3fb6b2;width:70%;font-weight:bolder;">Correction in any typos is warmly welcomed.</marquee>
+<marquee style="margin-left:250px;color:#3fb6b2;width:70%;font-weight:bolder;">Your priceless reviews are very much welcomed.</marquee>
+<marquee style="margin-left:250px;color:#3fb6b2;width:70%;font-weight:bolder;">I have tried to be a little bit GIbberish.</marquee>
+<marquee style="margin-left:250px;color:#3fb6b2;;width:70%;font-weight:bolder;">I have tried to be a little bit GIbberish yet again.</marquee>
+
+
+
+<div id="search">
+	<form method="POST" action="#">
+		{% csrf_token %}
+		<label>Search Skills:</label>
+		<input type="search" list="options" placeholder="Search Skills" name="search" autofocus="true" />
+		<input type="submit" name="submit">
+		<datalist id="options">
+			<option>HTML</option>
+			<option>Python</option>
+			<option>Javascript</option>
+		</datalist>
+	</form>
+	
+</div>
+<div class="section">	
+	<h1><span>About Me</span></h1>
+	<p>Hey I'm <strong>Ankit</strong>. How are you doing these days? Talking about me. I'm not bad. Blah Blah Blah. I have read about a quote today which i have heard so much about. This was a war starting off my road. This is it.<strong>SoloLearn</strong> is a noce place to learn and grow very very well.Hey I'm <strong>Ankit</strong>. How are you doing these days? Talking about me. I'm not bad. Blah Blah Blah. I have read about a quote today which i have heard so much about. This was a war starting off my road. This is it.<strong>SoloLearn</strong> is a noce place to learn and grow very very well.Hey I'm <strong>Ankit</strong>. How are you doing these days? Talking about me. I'm not bad. Blah Blah Blah. I have read about a quote today which i have heard so much about. This was a war starting off my road. This is it.<strong>SoloLearn</strong> is a noce place to learn and grow very very well.Hey I'm <strong>Ankit</strong>. How are you doing these days? Talking about me. I'm not bad. Blah Blah Blah. I have read about a quote today which i have heard so much about. This was a war starting off my road. This is it.<strong>SoloLearn</strong> is a noce place to learn and grow very very well.Hey I'm <strong>Ankit</strong>. How are you doing these days? Talking about me. I'm not bad. Blah Blah Blah. I have read about a quote today which i have heard so much about. This was a war starting off my road. This is it.<strong>SoloLearn</strong> is a noce place to learn and grow very very well.
+	</p>
+	<p class="quote"><strong>Declare Variables, Not war.</strong></p>
+</div>
+	<!-- My coding Schedule -->
+<div class="section">
+	<h1><span>My Coding Schedule</span></h1>
+	<table>
+	<tr>
+		<th>Day</th>
+		<th>Mon</th>
+		<th>Tue</th>
+		<th>Wed</th>
+		<th>Thu</th>
+		<th>Fri</th>
+	</tr>
+	<tr>
+		<td>8-8:30</td>
+		<td class="selected">Learn</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+
+		
+	</tr>
+	<tr>
+		<td>9-10</td>
+		<td></td>
+		<td class="selected">Prac</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>12-12:30</td>
+		<td></td>
+		<td></td>
+		<td class="selected">Play</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>1-2</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td class="selected">Code</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>6-6:15</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td class="selected">Discuss</td>
+	</tr>
+	</table>
+</div>
+	<!-- My skills -->
+<div class="section">
+	<h1><span>My Skills</span></h1>
+	<ul>
+		<li id="it1">Html <br />
+			<progress value="80" max="100" min="0"></progress>
+		</li>
+		<li id="it2">Python <br />
+			<progress value="20" max="100" min="0"></progress>
+		</li>
+		<li id="it3">Javascript <br />
+			<progress value="10" max="100" min="0"></progress>
+		</li>
+	</ul>
+</div>
+<div class="buttons">
+<button onclick="displaycontact()">Contact Me Here.</button>
+</div>
+</body>
+</html>

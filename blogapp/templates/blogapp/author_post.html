@@ -1,0 +1,50 @@
+{% extends 'blogapp/newbase.html' %}
+{% block content%}
+<!--  {{view.kwargs.author_name}} to get the author_name variable from the url-->
+<div class="container">
+    {% for post in posts %}
+    <ul class="collection with-header">
+      <li class="collection-header brown-text">
+        <div>
+           <div class="chip" style="margin-top:5px;white-space:nowrap;
+                                        overflow: hidden;text-overflow: ellipsis;position: relative;">
+                <img src="{{ post.author.profile.image.url }}">
+                <a href="{% url 'author-posts-newhome' post.author %}">
+                {{post.author}}</a>
+           </div>
+            <div class="right">
+                <strong>
+                    {{post.date_posted|date:"F d, Y"}}
+                </strong>    
+            </div>
+        </div>
+        <div class="divider"></div> 
+        <div>
+          <div>
+            <h4>
+              <a href="{%url 'post-detail-newhome' post.label%}" id="{{post.label}}">{{post.title}}</a>
+            </h4>
+            {%if post.category != None%}
+                <div class="chip" style="margin-top:5px">
+                    Tag: {{post.category}}
+                </div>
+            {%endif%}
+          </div>
+        </li>
+    <li class="collection-item content-markdown">
+        <p>{{post.content|safe}}</p>
+        {%include 'blogapp/comment.html'%}
+    </li>
+    </ul>
+       {%endfor%}
+<!-- Pagination -->
+<!-- page_obj is the object passed by the class to tho the template -->
+<!-- page_obj.paginator paginator obj of current page -->
+       
+{% if is_paginated %}
+    {% include 'blogapp/pagination.html'%} 
+{%endif%}
+</div>
+{% endblock content%}
+
+ 
