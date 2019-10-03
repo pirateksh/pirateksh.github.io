@@ -1,0 +1,61 @@
+{% extends 'blogapp/newbase.html' %}
+
+{% block content %}
+<div class="container">
+    <form>
+        <!-- <button class="btn waves-effect waves-light" type="submit" name="submit"> -->
+            <!-- <i class="material-icons right">send</i> -->
+                <a class="btn tooltipped tooltipped-add" data-position="top" data-tooltip="Click To Add Post" href="{%url 'post-create'%}" ><b>Add Post</b></a>
+            <!-- <i class="material-icons right">send</i> -->
+        <!-- </button> -->
+    </form>
+   
+    {% for post in posts %}
+    <ul class="collection with-header">
+      <li class="collection-header brown-text" >
+        <div>
+           <div class="chip chip-imp">
+            <img src="{{ post.author.profile.image.url }}">
+            <a href="{% url 'author-posts-newhome' post.author %}" >
+            {{post.author}}</a>
+          </div>
+          <div class="right">
+            <strong>
+                {{post.date_posted|date:"F d, Y"}}
+            </strong>
+          </div>
+        </div>
+        <div class="divider"></div> 
+          <div>
+            <h4>
+              <a href="{%url 'post-detail-newhome' post.label%}" id="{{post.label}}">{{post.title}}</a>
+            </h4>
+
+              {%if post.category != None%}
+              <div class="chip chip-imp">
+                 Tag: {{post.category}}
+              </div>
+              {%endif%}
+          </div>
+        </li>
+        <li class="collection-item content-markdown">
+            {{post.content|safe}}
+            {% include 'blogapp/comment.html' %}
+        </li>
+        <li>
+          
+        </li>
+    </ul>
+    
+       {%endfor%}
+<!-- Pagination -->
+<!-- page_obj is the object passed by the class to tho the template -->
+<!-- page_obj.paginator paginator obj of current page -->
+       
+{%if is_paginated%}
+  {% include 'blogapp/pagination.html'%}
+{%endif%}
+</div>
+{% endblock content%}
+
+ 

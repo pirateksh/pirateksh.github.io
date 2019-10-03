@@ -1,0 +1,42 @@
+{% extends 'blogapp/newbase.html' %}
+{% block content%}
+<div class="container">
+    <ul class="collection with-header">
+      <li class="collection-header brown-text">
+        <div>
+           <div class="chip chip-imp">
+            <img src="{{ post.author.profile.image.url }}">
+            <a href="{% url 'author-posts-newhome' post.author %}">
+            {{post.author}}</a>
+          </div>
+          <div class="right">
+            <strong>
+                {{post.date_posted|date:"F d, Y"}}
+            </strong>
+          </div>
+        </div>
+        <div class="divider"></div> 
+          <div>
+            
+            <h4  id="{{post.label}}">
+                {{post.title}}
+            </h4>
+            
+              {%if post.category != None%}
+              <div class="chip chip-imp">
+                 Tag: {{post.category}}
+              </div>
+              {%endif%}
+          </div>
+        </li>
+        <li class="collection-item content-markdown">
+            <p>{{post.content|safe}}</p>
+             {% include 'blogapp/comment.html' %}
+        </li>
+    </ul>
+   
+</div>
+{% endblock content%}
+
+ 
+ 

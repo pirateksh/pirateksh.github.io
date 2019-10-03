@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cookie_test</title>
+</head>
+<body>
+<p>Helloo Cookie: 
+				{% if 'cook_user_cookie' in request.COOKIES%}
+				{{request.COOKIES.cook_user_cookie}}
+				{%else%}
+				Hi
+				{%endif%}
+
+</p>
+</body>
+</html>

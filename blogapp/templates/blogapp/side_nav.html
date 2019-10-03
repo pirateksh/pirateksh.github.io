@@ -1,0 +1,95 @@
+  <!--Side NAV-->
+{%load static%}
+
+  <ul id="slide-out" class="sidenav ">
+    <li>
+        <div class="user-view">
+        <div class="background">
+            <img src="{%static 'blogapp/Images/background3.jpg' %}">
+        </div>
+          {% if user.is_authenticated %}
+            {% with proadd="users-newprofile" %}
+            <a href="{% url proadd %}"><span class="white-text name">Hello
+            {%endwith%}
+            {%if 'first_name_from_session' in request.session %}
+            {{  request.session.first_name_from_session }}
+            {%endif%}
+          </span></a>
+          {%else%}
+            <span class="white-text name">Hello Coder!</span>
+          {% endif %}
+            <span class="white-text email">Welcome!</span>
+        </div>
+    </li>
+      <div id="catags">
+        <li class="active">
+          <a href="{%url 'blogapp-newhome'%}" name="submit" >All Posts</a>
+        </li>
+            {%for category in categories%}  
+                    <li>
+                        <a href="{%url 'blogapp-newhome'%}{{category.id}}" 
+                          name="submit">{{category}}
+                        </a>
+                    </li>   
+            {%endfor%}  
+      </div>
+
+  <!-- </ul class="slide-out" id="mobile-links"> -->
+  {% if user.is_authenticated %}
+  {% with proadd="users-newprofile" %}
+    <li class="hide-on-large-only">
+          <button onclick='window.location.href="{% url proadd %}"' type="submit"  
+          name="submit" class="btn waves-effect waves-light">
+            Profile
+             <i class="material-icons right">send</i>
+          </button>
+               
+          {%endwith%}
+    </li>
+
+                {% if user.is_authenticated and user.is_staff %}
+                {% with adar="blogapp-newhome" %}
+                   <li class="hide-on-large-only">
+                        
+                            <button type="submit" name="submit"  class="btn waves-effect waves-light" onclick="window.location.href='{% url adar %}admin/'">
+                             Admin Area
+                              <i class="material-icons right">send</i>
+                            </button>
+                        
+                   </li>
+                {%endwith%}
+                {%endif%}
+                {% with logout="users-logout" %}
+                <li class="hide-on-large-only">
+                    <!-- WAY TO CALL TWO ONCLICK EVENTS SIMULTANEOUSLY -->
+                       <!--  <button type="submit" name="submit" class="teal-text" onclick='window.location.href="{% url logout %}";
+                             M.toast({html:"Logged Out Successfully."});'>
+                            Logout
+                        </button> -->
+                        <button type="submit" name="submit"  class="btn waves-effect waves-light" onclick='window.location.href="{% url logout %}"'>
+                            Logout
+                             <i class="material-icons right">send</i>
+                        </button>
+                </li >
+                {% endwith %}
+            {%else%}
+                    <li class="hide-on-large-only">
+                        <button onclick="document.getElementById('id01').style.display='block'"  class="btn waves-effect waves-light js-open-modal">Login
+                          <i class="material-icons right">send</i>
+                        </button>
+                    </li>
+                    <li class="hide-on-large-only">
+                        <button onclick="document.getElementById('id02').style.display='block'" class="btn waves-effect waves-light js-open-modal">Register
+                           <i class="material-icons right">send</i>
+                        </button>
+                    </li>
+            {%endif%}
+               
+             <!-- COllect Date from user interests if user is logged in And loop as above -->
+    </ul>
+<div class="fixed-action-btn-left-bottom horizontal click-to-toggle custom-toggle left hide-on-small-only">
+  <a href="#" class="sidenav-trigger btn-floating btn-large waves-light red" data-target="slide-out"><i class="material-icons">menu</i>
+  </a>
+</div>
+
+ <!--Side NAV END-->
